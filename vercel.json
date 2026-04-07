@@ -1,0 +1,8 @@
+{
+  "name": "empire-idle",
+  "version": 2,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": "vite",
+  "env": []
+}

@@ -5,7 +5,13 @@
       "Bash(npx vite:*)",
       "Bash(npx tsc:*)",
       "Bash(npm run:*)",
-      "Bash(grep -n \"statAffinity: ''satisfaction''\" \"C:\\\\Users\\\\Yoan Giovanni\\\\Desktop\\\\Jeux Pédagogique\\\\src\\\\core\\\\data\\\\activities.ts\")"
+      "Bash(grep -n \"statAffinity: ''satisfaction''\" \"C:\\\\Users\\\\Yoan Giovanni\\\\Desktop\\\\Jeux Pédagogique\\\\src\\\\core\\\\data\\\\activities.ts\")",
+      "Read(//c/Users/Yoan Giovanni/Desktop/**)",
+      "Bash(zip -r \"Jeux Pédagogique-deployment.zip\" \"Jeux Pédagogique\" -x \"Jeux Pédagogique/node_modules/*\" \"Jeux Pédagogique/.git/*\" \"Jeux Pédagogique/dist/*\" \"Jeux Pédagogique/.claude/*\")",
+      "Bash(powershell -NoProfile -Command \"Compress-Archive -Path ''C:\\\\Users\\\\Yoan Giovanni\\\\Desktop\\\\Jeux Pédagogique'' -DestinationPath ''C:\\\\Users\\\\Yoan Giovanni\\\\Desktop\\\\empire-idle-deploy.zip'' -Force; Write-Host ''Archive créé!''\")",
+      "Bash(gh auth:*)",
+      "Bash(choco install:*)",
+      "Bash(npm install:*)"
     ]
   }
 }
