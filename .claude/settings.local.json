@@ -4,7 +4,8 @@
       "mcp__Claude_Preview__preview_start",
       "Bash(npx vite:*)",
       "Bash(npx tsc:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(grep -n \"statAffinity: ''satisfaction''\" \"C:\\\\Users\\\\Yoan Giovanni\\\\Desktop\\\\Jeux Pédagogique\\\\src\\\\core\\\\data\\\\activities.ts\")"
     ]
   }
 }

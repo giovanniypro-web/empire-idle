@@ -205,6 +205,7 @@ export function createInitialMetaState(): MetaState {
     profile: {
       playerName: 'Joueur',
       companyName: 'Ma Startup',
+      avatarIndex: 0,
     },
     careerStats: {
       totalRunsCompleted: 0,

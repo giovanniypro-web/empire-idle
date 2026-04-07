@@ -65,8 +65,8 @@ export function clampStat(value: number): number {
  * Returns partial BusinessStats adjustments to add to current stats.
  */
 export function computeStatGainFromCycle(
-  statAffinity: 'popularity' | 'reputation' | 'neutral',
-  statGainPerCycle: { popularity?: number; reputation?: number },
+  statAffinity: 'popularity' | 'reputation' | 'satisfaction' | 'neutral',
+  statGainPerCycle: { popularity?: number; reputation?: number; satisfaction?: number },
   count: number,
   automated: boolean,
   specialization: SpecializationId | null,
@@ -84,9 +84,12 @@ export function computeStatGainFromCycle(
   if (statAffinity === 'reputation' && statGainPerCycle.reputation) {
     delta.reputation = statGainPerCycle.reputation * count * repMult
   }
+  if (statAffinity === 'satisfaction' && statGainPerCycle.satisfaction) {
+    delta.satisfaction = statGainPerCycle.satisfaction * count * satMult
+  }
   // Automated cycles also gain satisfaction
   if (automated) {
-    delta.satisfaction = 0.008 * count * satMult
+    delta.satisfaction = (delta.satisfaction ?? 0) + 0.008 * count * satMult
   }
 
   return delta

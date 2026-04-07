@@ -284,7 +284,11 @@ export function getAccessibleCategories(
   assets: string[]
   upgrades: string[]
 } {
-  const accessible = {
+  const accessible: {
+    activities: string[]
+    assets: string[]
+    upgrades: string[]
+  } = {
     activities: [],
     assets: [],
     upgrades: [],
@@ -292,10 +296,14 @@ export function getAccessibleCategories(
 
   for (const [contentId, condition] of Object.entries(GATING_CONFIG)) {
     if (isContentAvailable(condition, gameState, metaState)) {
-      const [category, id] = contentId.split(':')
-      if (category === 'activity') accessible.activities.push(id)
-      if (category === 'asset') accessible.assets.push(id)
-      if (category === 'upgrade') accessible.upgrades.push(id)
+      const parts = contentId.split(':')
+      if (parts.length === 2) {
+        const category = parts[0]
+        const id = parts[1]
+        if (category === 'activity') accessible.activities.push(id)
+        if (category === 'asset') accessible.assets.push(id)
+        if (category === 'upgrade') accessible.upgrades.push(id)
+      }
     }
   }
 

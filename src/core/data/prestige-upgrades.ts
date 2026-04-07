@@ -320,7 +320,7 @@ export const PRESTIGE_UPGRADES: PrestigeUpgradeDef[] = [
     branch: 'leadership',
     cost: 24,
     maxLevel: 2,
-    prerequisites: ['lead_efficiency_i'],
+    prerequisiteUpgradeIds: ['lead_efficiency_i'],
     effects: [
       { type: 'custom', magnitude: 1.05 },
     ],
