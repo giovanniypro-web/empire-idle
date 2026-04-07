@@ -1,0 +1,242 @@
+.career-history {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.career-history-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  color: var(--text-light);
+  font-size: 1.2rem;
+}
+
+.career-container {
+  max-width: 900px;
+  width: 100%;
+}
+
+.career-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 40px;
+  color: var(--gold);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.career-section {
+  background: var(--panel-bg);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+  border-radius: 8px;
+  padding: 25px;
+  margin-bottom: 25px;
+}
+
+.section-title {
+  font-size: 1.3rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.3);
+  padding-bottom: 12px;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.stat-box {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  font-size: 1.6rem;
+  font-weight: bold;
+  color: var(--text-light);
+}
+
+.stat-value.prestige-highlight {
+  color: var(--gold);
+  font-size: 1.5rem;
+}
+
+.prestige-bank-box {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(100, 200, 255, 0.1) 100%);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.prestige-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 1.1rem;
+}
+
+.prestige-label {
+  color: var(--text-light);
+  font-weight: 500;
+}
+
+.prestige-amount {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: var(--gold);
+  text-shadow: 0 2px 8px rgba(212, 175, 55, 0.3);
+}
+
+.prestige-info {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.resets-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reset-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid var(--gold);
+  border-radius: 4px;
+  padding: 15px;
+  transition: all 0.2s ease;
+}
+
+.reset-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  transform: translateX(4px);
+}
+
+.reset-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.reset-company {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: var(--text-light);
+}
+
+.reset-prestige {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+.reset-details {
+  display: flex;
+  gap: 20px;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  flex-wrap: wrap;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+}
+
+.detail-item::before {
+  content: '•';
+  margin-right: 8px;
+  color: var(--gold);
+}
+
+.detail-item:first-child::before {
+  content: '';
+  margin-right: 0;
+}
+
+.detail-date {
+  margin-left: auto;
+  color: var(--text-muted);
+  font-size: 0.75rem;
+}
+
+.career-empty,
+.career-empty-secondary {
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 1rem;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .career-container {
+    padding: 0 10px;
+  }
+
+  .career-title {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+  }
+
+  .section-title {
+    font-size: 1.1rem;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .reset-details {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .detail-date {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .career-section {
+    padding: 15px;
+    margin-bottom: 15px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .prestige-total {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .reset-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}

@@ -1,0 +1,193 @@
+.retirement-sequence {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.retirement-container {
+  max-width: 600px;
+  background: var(--panel-bg);
+  border: 3px solid var(--gold);
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 8px 32px rgba(212, 175, 55, 0.3);
+  animation: slideIn 0.4s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.retirement-title {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: var(--gold);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.retirement-content {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.retirement-stats h2 {
+  font-size: 1.4rem;
+  margin-bottom: 8px;
+  color: var(--text-light);
+}
+
+.company-summary {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+}
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.achievement-item {
+  background: rgba(212, 175, 55, 0.1);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  border-radius: 6px;
+  padding: 12px;
+  text-align: center;
+}
+
+.achievement-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.achievement-value {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: var(--gold);
+}
+
+.retirement-prestige-box {
+  background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(100, 200, 255, 0.1) 100%);
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+
+.retirement-prestige-box h3 {
+  color: var(--gold);
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.prestige-display {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--gold);
+  margin-bottom: 12px;
+  text-shadow: 0 2px 8px rgba(212, 175, 55, 0.4);
+}
+
+.prestige-description {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.retirement-message {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 3px solid var(--gold);
+  padding: 15px;
+  border-radius: 4px;
+}
+
+.retirement-message p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--text-light);
+}
+
+.retirement-message strong {
+  color: var(--gold);
+}
+
+.retirement-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--gold) 0%, #e6c200 100%);
+  color: #000;
+  box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(212, 175, 55, 0.4);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: var(--gold);
+  border: 2px solid var(--gold);
+}
+
+.btn-secondary:hover {
+  background: rgba(212, 175, 55, 0.1);
+}
+
+@media (max-width: 600px) {
+  .retirement-container {
+    margin: 20px;
+    padding: 25px;
+  }
+
+  .retirement-title {
+    font-size: 1.5rem;
+  }
+
+  .achievement-grid {
+    grid-template-columns: 1fr;
+  }
+}
