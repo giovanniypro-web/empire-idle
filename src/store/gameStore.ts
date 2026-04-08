@@ -39,6 +39,7 @@ import {
   getTotalIncomePerSecond,
   calculateTotalSalary,
   updateMarketPrice,
+  getActivityEmployeeBonus,
 } from '../core/systems/economySystem'
 import {
   computeStatGainFromCycle,
@@ -94,6 +95,7 @@ interface StoreActions {
   promoteEmployeeAction: (employeeId: string) => void
   trainEmployeeAction: (employeeId: string, cost: number) => void
   giveRaise: (employeeId: string) => void
+  assignEmployeeToActivity: (employeeId: string, activityId: string | null) => void
   expandOffice: () => void
   buyMarketItem: (listingId: string, qty: number) => void
   sellInventoryItem: (itemId: string, qty: number) => void
@@ -209,6 +211,10 @@ export const useGameStore = create<GameStoreState>()(
                 income *= 1 + (employeeContribution * BALANCE.EMPLOYEE_CONTRIBUTION_BASE)
               }
 
+              // V4.5 — Assigned employee bonuses (exclusive assignment)
+              const { incomeMultiplier: empIncomeBonus } = getActivityEmployeeBonus(def.id, state.employees)
+              income *= empIncomeBonus
+
               // Satisfaction boost for automated activities
               if (automated) {
                 const { satisfaction } = state.stats
@@ -313,11 +319,51 @@ export const useGameStore = create<GameStoreState>()(
         }
 
         // ── 2. Deduct operating costs ──────────────────────────
-        // 2a. Salaries
+        // 2a. Salaries (V4.5: Monthly deduction instead of per-second)
         const salaryMult = deptEffects.salaryMultiplier * talentFx.operatingCostMultiplier
-        const totalSalary = calculateTotalSalary(state.employees, state.specialization) * salaryMult
-        if (totalSalary > 0) {
-          state.player.money = Math.max(0, state.player.money - totalSalary * deltaTime)
+        const totalSalaryPerSec = calculateTotalSalary(state.employees, state.specialization) * salaryMult
+
+        // Check if monthly payroll is due
+        if (now >= state.nextPayrollDate) {
+          // Calculate monthly cost: convert per-second salary to 30-day total
+          const monthlyCost = totalSalaryPerSec * BALANCE.GAME_MONTH_DURATION_MS / 1000
+          state.monthlyPayroll = monthlyCost
+
+          // Try to deduct
+          if (state.player.money >= monthlyCost) {
+            // Payroll successful
+            state.player.money -= monthlyCost
+            state.lastSalaryDeduction = now
+
+            // Reset unpaid months for all employees
+            for (const emp of Object.values(state.employees)) {
+              if (emp.status !== 'departed') {
+                emp.monthsUnpaid = 0
+              }
+            }
+          } else {
+            // Payroll failed - mark as unpaid
+            for (const emp of Object.values(state.employees)) {
+              if (emp.status !== 'departed' && emp.status !== 'notice') {
+                emp.monthsUnpaid += 1
+
+                // Motivation penalty for unpaid month
+                emp.motivation = Math.max(0, emp.motivation + BALANCE.UNPAID_MOTIVATION_PENALTY * 100)
+
+                // Auto-depart if too many unpaid months
+                if (emp.monthsUnpaid >= BALANCE.UNPAID_DEPARTURE_THRESHOLD) {
+                  emp.status = 'departed'
+                  get().addNotification(
+                    `${emp.name} left due to ${emp.monthsUnpaid} months unpaid salary.`,
+                    'warning'
+                  )
+                }
+              }
+            }
+          }
+
+          // Set next payroll date
+          state.nextPayrollDate = now + BALANCE.GAME_MONTH_DURATION_MS
         }
 
         // 2b. Department ongoing costs
@@ -631,6 +677,29 @@ export const useGameStore = create<GameStoreState>()(
         state.stats.reputation = clampStat(state.stats.reputation + 1)
 
         get().addNotification(`${emp.name} morale boosted! Risk reduced.`, 'success')
+      })
+    },
+
+    // ── ASSIGN EMPLOYEE TO ACTIVITY (V4.5) ──────────────────────
+    assignEmployeeToActivity: (employeeId: string, activityId: string | null) => {
+      set(state => {
+        const emp = state.employees[employeeId]
+        if (!emp || emp.status === 'departed') return
+
+        // Check if activity exists (if not null)
+        if (activityId && !ACTIVITIES.find(a => a.id === activityId)) {
+          return
+        }
+
+        emp.assignedActivityId = activityId
+        emp.assignmentChangedAt = Date.now()
+
+        const actName = activityId ? ACTIVITIES.find(a => a.id === activityId)?.name : 'unassigned'
+        if (activityId) {
+          get().addNotification(`${emp.name} assigned to ${actName}.`, 'success')
+        } else {
+          get().addNotification(`${emp.name} unassigned.`, 'info')
+        }
       })
     },
 

@@ -8,6 +8,7 @@ import type { EmployeeState } from '../../core/entities'
 import { useGameStore } from '../../store/gameStore'
 import { calculateEmployeeContribution } from '../../core/systems/hrSystem'
 import { BALANCE } from '../../core/data/balancing'
+import { ACTIVITIES } from '../../core/data/activities'
 import { formatMoney } from '../utils/format'
 import {
   getMoraleColor,
@@ -26,6 +27,7 @@ export default function EmployeeCard({ employee }: EmployeeCardProps) {
   const promoteEmployeeAction = useGameStore(s => s.promoteEmployeeAction)
   const trainEmployeeAction = useGameStore(s => s.trainEmployeeAction)
   const giveRaise = useGameStore(s => s.giveRaise)
+  const assignEmployeeToActivity = useGameStore(s => s.assignEmployeeToActivity)
 
   // Calculate costs and values
   const promotionCost = employee.salary * BALANCE.PROMOTION_COST_MULTIPLIER
@@ -149,6 +151,34 @@ export default function EmployeeCard({ employee }: EmployeeCardProps) {
         color: 'var(--text-sec)',
       }}>
         {profitability} · {contribValue > employee.salary * 0.2 ? '✓ Pays for themselves' : 'Investment mode'}
+      </div>
+
+      {/* V4.5: Activity Assignment */}
+      <div style={{ marginBottom: 12 }}>
+        <label style={{ fontSize: 11, color: 'var(--text-sec)', display: 'block', marginBottom: 6, fontWeight: 600 }}>
+          📍 Assign to Activity
+        </label>
+        <select
+          value={employee.assignedActivityId || ''}
+          onChange={(e) => assignEmployeeToActivity(employee.id, e.target.value || null)}
+          style={{
+            width: '100%',
+            padding: '6px 8px',
+            fontSize: 12,
+            background: 'var(--bg-sec)',
+            color: 'var(--text-pri)',
+            border: '1px solid var(--border)',
+            borderRadius: 4,
+            cursor: 'pointer',
+          }}
+        >
+          <option value="">Unassigned</option>
+          {ACTIVITIES.map(act => (
+            <option key={act.id} value={act.id}>
+              {act.name}
+            </option>
+          ))}
+        </select>
       </div>
 
       {/* Phase 3: Training impact (pedagogy) */}
