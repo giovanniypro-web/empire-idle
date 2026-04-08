@@ -340,3 +340,41 @@ export function updateMarketPrice(
     trend: newTrend,
   }
 }
+
+// ── Employee Assignment Bonuses (V4.5) ────────────────────────
+/**
+ * Calculate income, speed, and skill bonuses from employees assigned to an activity.
+ * Each assigned employee contributes: bonusPerEmployee × (skill/100) × (motivation/100) × (productivity/100)
+ */
+export function getActivityEmployeeBonus(
+  activityId: string,
+  employees: Record<string, EmployeeState>,
+): {
+  incomeMultiplier: number
+  durationMultiplier: number
+  skillBoost: number
+} {
+  // Find employees assigned to this activity
+  const assigned = Object.values(employees).filter(
+    e => e.status === 'active' && e.assignedActivityId === activityId
+  )
+
+  if (assigned.length === 0) {
+    return { incomeMultiplier: 1.0, durationMultiplier: 1.0, skillBoost: 0 }
+  }
+
+  // Calculate effectiveness per employee (0-1 scale)
+  const bonusPerEmployee = BALANCE.EMPLOYEE_ASSIGNMENT_INCOME_BONUS  // 0.15 = 15%
+  let totalBonus = 0
+
+  for (const emp of assigned) {
+    const effectiveness = (emp.skill / 100) * (emp.motivation / 100) * (emp.productivity / 100)
+    totalBonus += bonusPerEmployee * effectiveness
+  }
+
+  return {
+    incomeMultiplier: 1 + totalBonus,
+    durationMultiplier: Math.max(0.5, 1 - totalBonus * BALANCE.EMPLOYEE_ASSIGNMENT_SPEED_BONUS),
+    skillBoost: Math.round(totalBonus * BALANCE.EMPLOYEE_ASSIGNMENT_SKILL_BONUS),
+  }
+}

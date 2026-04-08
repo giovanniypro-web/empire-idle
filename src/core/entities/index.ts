@@ -386,7 +386,7 @@ export interface EmployeeState {
   name: string                  // "Alice Chen", "Bob Smith"
   role: EmployeeRole            // skill/seniority tier
   department: EmployeeDepartment // which dept they work in
-  salary: number                // per second cost
+  salary: number                // per second cost (converted to monthly deduction)
   hiringCost: number            // one-time cost to hire
   skill: number                 // 0-100, impacts output quality
   motivation: number            // 0-100, impacts productivity
@@ -400,6 +400,11 @@ export interface EmployeeState {
   hiredAt: number               // timestamp
   onboardingProgress: number    // 0-100 for status=onboarding (ramps to active)
   tags: string[]                // ["loyal", "ambitious", "problem_solver"] for extension
+
+  // V4.5: Employee Assignment System
+  assignedActivityId: string | null  // assigned to single activity (null = unassigned)
+  assignmentChangedAt: number   // timestamp when assignment last changed
+  monthsUnpaid: number          // consecutive unpaid months (auto-depart at 3+)
 }
 
 export interface OfficeState {
@@ -661,6 +666,11 @@ export interface GameState {
   missions: Record<string, MissionState>
   activeEvent: GameEventDef | null
   activeEffects: ActiveEffect[]
+
+  // V4.5: Employee salary tracking
+  lastSalaryDeduction: number   // timestamp of last monthly payroll deduction
+  monthlyPayroll: number        // cached total monthly salary cost (for UI)
+  nextPayrollDate: number       // timestamp when next payroll is due
 
   // Timestamps
   lastSaved: number

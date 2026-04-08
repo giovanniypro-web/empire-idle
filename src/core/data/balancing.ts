@@ -105,6 +105,14 @@ export const BALANCE = {
   STRUCTURE_EFFICIENCY_PENALTY_MEDIUM: 0.10,  // -10% for teams 11-15
   STRUCTURE_EFFICIENCY_PENALTY_LARGE: 0.15,   // -15% for teams 16+
   STRUCTURE_GRACE_PERIOD: 5,                  // no penalty for first 5 employees
+
+  // ── Employee Assignment System (V4.5) ──────────────────────
+  GAME_MONTH_DURATION_MS: 30 * 60 * 1000,     // 30 minutes = 1 game month
+  EMPLOYEE_ASSIGNMENT_INCOME_BONUS: 0.15,     // +15% income per assigned employee
+  EMPLOYEE_ASSIGNMENT_SPEED_BONUS: 0.5,       // up to 50% faster with employees
+  EMPLOYEE_ASSIGNMENT_SKILL_BONUS: 20,        // up to +20 skill points
+  UNPAID_DEPARTURE_THRESHOLD: 3,              // depart after 3 unpaid months
+  UNPAID_MOTIVATION_PENALTY: -0.30,           // -30% motivation per unpaid month
 } as const
 
 export type Balance = typeof BALANCE

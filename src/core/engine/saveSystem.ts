@@ -118,6 +118,12 @@ export function createInitialGameState(): GameState {
     missions,
     activeEvent: null,
     activeEffects: [],
+
+    // V4.5: Employee salary system
+    lastSalaryDeduction: now,
+    monthlyPayroll: 0,
+    nextPayrollDate: now + BALANCE.GAME_MONTH_DURATION_MS,
+
     lastSaved: now,
     lastTick: now,
     lastStockUpdate: now,

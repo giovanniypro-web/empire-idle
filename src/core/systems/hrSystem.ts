@@ -41,6 +41,11 @@ export function generateEmployeeFromProfile(
     hiredAt: now,
     onboardingProgress: 0,
     tags: profile.tags,
+
+    // V4.5: Employee assignment & salary tracking
+    assignedActivityId: null,  // unassigned by default
+    assignmentChangedAt: now,
+    monthsUnpaid: 0,
   }
 }
 
