@@ -332,6 +332,7 @@ html, body, #root {
 .act-buttons {
   display: flex;
   gap: 8px;
+  flex-wrap: wrap;
 }
 
 /* ── Buttons ──────────────────────────────────────────────── */
