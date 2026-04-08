@@ -88,7 +88,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Lance ton blog monétisé.',
     icon: '✍️',
     condition: { type: 'own_activity', activityId: 'blog', count: 1 },
-    rewardMoney: 3000,
+    rewardMoney: 1000,
     rewardXP: 400,
   },
   {
@@ -124,7 +124,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Lance ta boutique en ligne.',
     icon: '🛍️',
     condition: { type: 'own_activity', activityId: 'ecommerce', count: 1 },
-    rewardMoney: 25000,
+    rewardMoney: 5000,
     rewardXP: 2000,
   },
   {
@@ -160,7 +160,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Atteins le niveau 12.',
     icon: '🎖️',
     condition: { type: 'reach_level', level: 12 },
-    rewardMoney: 200000,
+    rewardMoney: 50000,
     rewardXP: 10000,
   },
   {
@@ -169,7 +169,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Lance ton SaaS B2B.',
     icon: '☁️',
     condition: { type: 'own_activity', activityId: 'saas', count: 1 },
-    rewardMoney: 500000,
+    rewardMoney: 50000,
     rewardXP: 20000,
   },
   {
@@ -190,7 +190,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Atteins le niveau 16.',
     icon: '🏰',
     condition: { type: 'reach_level', level: 16 },
-    rewardMoney: 1000000,
+    rewardMoney: 200000,
     rewardXP: 80000,
   },
 
@@ -200,7 +200,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Lance ton agence digitale.',
     icon: '🏢',
     condition: { type: 'own_activity', activityId: 'agency', count: 1 },
-    rewardMoney: 2000000,
+    rewardMoney: 100000,
     rewardXP: 150000,
   },
 
@@ -210,7 +210,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Génère 1 000€/s de revenu passif.',
     icon: '🎰',
     condition: { type: 'income_per_second', amount: 1000 },
-    rewardMoney: 5000000,
+    rewardMoney: 500000,
     rewardXP: 300000,
   },
 
@@ -220,7 +220,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Accumule 1 000 000 000€ au total.',
     icon: '👑',
     condition: { type: 'earn_total', amount: 1000000000 },
-    rewardMoney: 500000,
+    rewardMoney: 50000,
     rewardXP: 200000,
   },
 
@@ -230,7 +230,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Atteins le niveau 20.',
     icon: '🔮',
     condition: { type: 'reach_level', level: 20 },
-    rewardMoney: 5000000,
+    rewardMoney: 500000,
     rewardXP: 400000,
   },
 
@@ -240,7 +240,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Lance ta startup tech.',
     icon: '🚀',
     condition: { type: 'own_activity', activityId: 'startup', count: 1 },
-    rewardMoney: 20000000,
+    rewardMoney: 1000000,
     rewardXP: 1000000,
   },
 
@@ -250,7 +250,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Génère 10 000€/s de revenu passif.',
     icon: '💰',
     condition: { type: 'income_per_second', amount: 10000 },
-    rewardMoney: 50000000,
+    rewardMoney: 5000000,
     rewardXP: 2000000,
   },
 
@@ -260,7 +260,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Atteins le niveau 25 — Accès au prestige system.',
     icon: '✨',
     condition: { type: 'reach_level', level: 25 },
-    rewardMoney: 100000000,
+    rewardMoney: 10000000,
     rewardXP: 5000000,
   },
 
@@ -270,7 +270,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Crée ton fonds de venture capital.',
     icon: '💵',
     condition: { type: 'own_activity', activityId: 'venture_capital', count: 1 },
-    rewardMoney: 200000000,
+    rewardMoney: 10000000,
     rewardXP: 3000000,
   },
 
@@ -280,7 +280,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Atteins le niveau 30 — L\'apothéose.',
     icon: '🌍',
     condition: { type: 'reach_level', level: 30 },
-    rewardMoney: 1000000000,
+    rewardMoney: 100000000,
     rewardXP: 10000000,
   },
 
@@ -290,7 +290,7 @@ export const MISSIONS: MissionDef[] = [
     description: 'Accumule 1 000 000 000 000€ au total.',
     icon: '💸',
     condition: { type: 'earn_total', amount: 1000000000000 },
-    rewardMoney: 100000000,
+    rewardMoney: 500000,
     rewardXP: 5000000,
   },
 ]
